@@ -1,0 +1,713 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>URB.N — Nexus for Urbanism & Urban Design</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0d0d0d;
+      --gray-dark: #1a1a1a;
+      --gray-mid: #2e2e2e;
+      --gray-light: #6b6b6b;
+      --gray-border: #2a2a2a;
+      --off-white: #f0ede8;
+      --yellow: #e8c832;
+      --yellow-muted: #c9a800;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--black);
+      color: var(--off-white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 4rem;
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--yellow);
+    }
+
+    .nav-logo span { color: var(--off-white); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 4rem 6rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0.85) 100%),
+        /* ── HERO BACKGROUND IMAGE — replace URL below with your own ── */
+        url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1800&auto=format&fit=crop') center/cover no-repeat;
+      z-index: 0;
+    }
+
+    .hero-tag {
+      position: relative;
+      z-index: 1;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      position: relative;
+      z-index: 1;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 9rem);
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title .accent { color: var(--yellow); }
+
+    .hero-bottom {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+    }
+
+    .hero-sub {
+      max-width: 500px;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(240,237,232,0.75);
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.25s, color 0.25s;
+      white-space: nowrap;
+    }
+
+    .hero-cta:hover {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-strip {
+      background: var(--yellow);
+      color: var(--black);
+      padding: 0.75rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-inner {
+      display: inline-block;
+      animation: marquee 26s linear infinite;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .marquee-inner span { margin: 0 2.5rem; }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 7rem 4rem;
+      border-bottom: 1px solid var(--gray-border);
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 2rem;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(240,237,232,0.75);
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-text p.community-note {
+      border-left: 2px solid var(--yellow);
+      padding-left: 1.2rem;
+      color: rgba(240,237,232,0.6);
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .about-founded {
+      margin-top: 2.5rem;
+      display: inline-block;
+      border-top: 1px solid var(--gray-border);
+      padding-top: 1.5rem;
+    }
+
+    .about-founded .stat-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--yellow);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .about-founded .stat-label {
+      font-size: 0.78rem;
+      color: var(--gray-light);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ── ABOUT IMAGE — replace src with your own photo ── */
+    .about-image {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      filter: grayscale(30%);
+      display: block;
+      border: 1px solid var(--gray-border);
+    }
+
+    /* ── RESEARCH AREAS ── */
+    #research { background: var(--gray-dark); }
+
+    .research-header {
+      margin-bottom: 4rem;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--gray-border);
+      border: 1px solid var(--gray-border);
+    }
+
+    .research-card {
+      background: var(--gray-dark);
+      padding: 3rem 2.5rem;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .research-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--yellow);
+      transition: width 0.4s ease;
+    }
+
+    .research-card:hover::before { width: 100%; }
+    .research-card:hover { background: var(--gray-mid); }
+
+    .research-card.hazard-card {
+      border-top: 2px solid var(--yellow);
+    }
+
+    .card-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.7rem;
+      color: var(--yellow);
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--gray-light);
+      font-weight: 300;
+    }
+
+    /* ── TEAM ── */
+    #team { background: var(--black); }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--gray-border);
+      border: 1px solid var(--gray-border);
+      margin-top: 4rem;
+    }
+
+    .team-card {
+      background: var(--black);
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+
+    .team-card:hover { background: var(--gray-dark); }
+
+    /* ── TEAM PHOTOS — replace each src with your own photo ── */
+    .team-photo {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      filter: grayscale(60%);
+      transition: filter 0.4s;
+      display: block;
+    }
+
+    .team-card:hover .team-photo { filter: grayscale(0%); }
+
+    .team-info {
+      padding: 1.5rem;
+      border-top: 1px solid var(--gray-border);
+    }
+
+    .team-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+
+    .team-role {
+      font-size: 0.75rem;
+      color: var(--yellow);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .gatorcorps-block {
+      margin-top: 1px;
+      background: var(--black);
+      border: 1px solid var(--gray-border);
+      border-top: 2px solid var(--yellow);
+      padding: 2.5rem;
+    }
+
+    .gatorcorps-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--yellow);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
+    }
+
+    .gatorcorps-desc {
+      font-size: 0.85rem;
+      color: var(--gray-light);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-left p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(240,237,232,0.7);
+      font-weight: 300;
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .contact-detail-item .label {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      font-weight: 600;
+    }
+
+    .contact-detail-item .value {
+      font-size: 0.95rem;
+      color: var(--off-white);
+    }
+
+    .contact-detail-item a {
+      color: var(--off-white);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-detail-item a:hover { color: var(--yellow); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--gray-border);
+    }
+
+    .footer-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--yellow);
+    }
+
+    .footer-logo span { color: var(--off-white); }
+
+    .footer-sub {
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      opacity: 0.4;
+      margin-top: 0.2rem;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--gray-light);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      #hero { padding: 0 2rem 4rem; }
+      section { padding: 5rem 2rem; }
+      #about { grid-template-columns: 1fr; gap: 3rem; }
+      .research-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      #contact { grid-template-columns: 1fr; gap: 3rem; }
+      footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-bottom { flex-direction: column; align-items: flex-start; }
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">URB<span>.N</span></div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-tag">University of Florida · College of Design, Construction & Planning</div>
+    <h1 class="hero-title">
+      URB<span class="accent">.</span>N<br/>
+      <span style="font-size: 0.45em; font-weight: 300; color: rgba(240,237,232,0.6); letter-spacing: 0.01em;">
+        Nexus for Urbanism &amp; Urban Design
+      </span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-sub">
+        Investigating how urban form shapes community — and how communities, in turn, must be designed to endure. We study the spatial structures of cities: their neighbourhoods and their capacity to face the pressures of changing conditions.
+      </p>
+      <a href="#research" class="hero-cta">Explore Research →</a>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <span>Urban Form</span>
+      <span>·</span>
+      <span>Community Planning</span>
+      <span>·</span>
+      <span>Urban Morphology</span>
+      <span>·</span>
+      <span>Public Space</span>
+      <span>·</span>
+      <span>Neighbourhood Structure</span>
+      <span>·</span>
+      <span>Hazard-Aware Design</span>
+      <span>·</span>
+      <span>Urban Form</span>
+      <span>·</span>
+      <span>Community Planning</span>
+      <span>·</span>
+      <span>Urban Morphology</span>
+      <span>·</span>
+      <span>Public Space</span>
+      <span>·</span>
+      <span>Neighbourhood Structure</span>
+      <span>·</span>
+      <span>Hazard-Aware Design</span>
+      <span>·</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-text">
+      <div class="section-label">About</div>
+      <h2 class="section-title">Form Shapes<br/>Community</h2>
+      <p>
+        URB.N is a research nexus at the University of Florida dedicated to understanding how the physical form of cities shapes — and is shaped by — the communities that inhabit them.
+      </p>
+      <p>
+        We work across urban morphology, community planning, and spatial analysis to examine the structures that define urban life: blocks, parcels, edges, and the in-between spaces that hold neighbourhoods together.
+      </p>
+      <p>
+        A thread running through our work is the question of durability — how urban form either prepares or exposes communities when environmental pressures arrive. We approach this not as a crisis agenda, but as a fundamental design problem embedded in the long history of city-building.
+      </p>
+      <p class="community-note">
+        Community engagement is central to how we work. Our research is developed in direct dialogue with residents, planners, and local governments — ensuring that spatial analysis translates into grounded, actionable outcomes.
+      </p>
+      <div class="about-founded">
+        <div class="stat-number">2025</div>
+        <div class="stat-label">Founded</div>
+      </div>
+    </div>
+    <!-- ABOUT IMAGE — replace src with your own photo, ideally portrait orientation -->
+    <img
+      class="about-image"
+      src="https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=800&auto=format&fit=crop"
+      alt="Urban street view"
+    />
+  </section>
+
+  <!-- RESEARCH AREAS -->
+  <section id="research">
+    <div class="research-header">
+      <div class="section-label">Focus Areas</div>
+      <h2 class="section-title">What We Study</h2>
+    </div>
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="card-number">01</div>
+        <div class="card-title">Urban Morphology</div>
+        <p class="card-desc">Analyzing the spatial logic of cities — how blocks, parcels, streets, and building types accumulate over time to produce distinct urban characters and neighbourhood identities.</p>
+      </div>
+      <div class="research-card">
+        <div class="card-number">02</div>
+        <div class="card-title">Neighbourhood Structure &amp; Change</div>
+        <p class="card-desc">Tracing how neighbourhoods evolve through growth, densification, and transformation — and what design frameworks can guide change while preserving community continuity.</p>
+      </div>
+      <div class="research-card">
+        <div class="card-number">03</div>
+        <div class="card-title">Land Use &amp; Mixed-Use Urbanism</div>
+        <p class="card-desc">Interrogating the relationship between land use patterns and urban vitality — questioning mono-functional zoning and exploring the spatial conditions that enable mixed, active, and inclusive environments.</p>
+      </div>
+      <div class="research-card hazard-card">
+        <div class="card-number">04</div>
+        <div class="card-title">Urban Form &amp; Environmental Stress</div>
+        <p class="card-desc">Examining how the spatial organization of cities — density, connectivity, land use mix, and building typology — determines how communities experience and absorb environmental pressures over time. Hazard is treated here as a lens on urban form, not an end in itself.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="section-label">People</div>
+    <h2 class="section-title">The Team</h2>
+    <div class="team-grid">
+
+      <!-- TEAM PHOTO — replace src with your own photo, square crop recommended -->
+      <div class="team-card">
+        <img class="team-photo" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop" alt="C. Brisotto"/>
+        <div class="team-info">
+          <div class="team-name">C. Brisotto</div>
+          <div class="team-role">Director</div>
+        </div>
+      </div>
+
+      <!-- TEAM PHOTO — replace src with Anonnya's photo -->
+      <div class="team-card">
+        <img class="team-photo" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop" alt="Anonnya Islam"/>
+        <div class="team-info">
+          <div class="team-name">Anonnya Islam</div>
+          <div class="team-role">PhD Student</div>
+        </div>
+      </div>
+
+      <!-- TEAM PHOTO — replace src with Jannatul's photo -->
+      <div class="team-card">
+        <img class="team-photo" src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&auto=format&fit=crop" alt="Jannatul Arzu"/>
+        <div class="team-info">
+          <div class="team-name">Jannatul Arzu</div>
+          <div class="team-role">PhD Student</div>
+        </div>
+      </div>
+
+      <!-- TEAM PHOTO — replace src with Evelyn's photo -->
+      <div class="team-card">
+        <img class="team-photo" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&auto=format&fit=crop" alt="Evelyn Calle"/>
+        <div class="team-info">
+          <div class="team-name">Evelyn Calle</div>
+          <div class="team-role">Research Assistant</div>
+        </div>
+      </div>
+
+      <!-- TEAM PHOTO — replace src with David's photo -->
+      <div class="team-card">
+        <img class="team-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop" alt="David Outerbridge"/>
+        <div class="team-info">
+          <div class="team-name">David Outerbridge</div>
+          <div class="team-role">PhD Student</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="gatorcorps-block">
+      <div class="gatorcorps-label">GatorCorps Members</div>
+      <p class="gatorcorps-desc">URB.N is supported by a rotating cohort of GatorCorps members — undergraduate and graduate students from across the University of Florida contributing to lab research, fieldwork, and community engagement initiatives.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-left">
+      <div class="section-label">Get in Touch</div>
+      <h2 class="section-title">Work With Us</h2>
+      <p>We welcome collaborations with municipalities, planning departments, community organizations, and researchers working at the intersection of urban form, spatial analysis, community design, and environmental risk.</p>
+      <div class="contact-detail">
+        <div class="contact-detail-item">
+          <span class="label">Email</span>
+          <span class="value"><a href="mailto:c.brisotto@ufl.edu">c.brisotto@ufl.edu</a></span>
+        </div>
+        <div class="contact-detail-item">
+          <span class="label">Location</span>
+          <span class="value">College of Design, Construction &amp; Planning<br/>University of Florida, Gainesville, FL</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-logo">URB<span>.N</span></div>
+      <div class="footer-sub">Nexus for Urbanism &amp; Urban Design</div>
+    </div>
+    <p class="footer-copy">© 2025 URB.N · University of Florida</p>
+  </footer>
+
+</body>
+</html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
